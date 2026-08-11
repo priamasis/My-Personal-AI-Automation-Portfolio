@@ -1,0 +1,698 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jade Martin Tunong | AI & Cybersecurity Portfolio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --bg-color: #050508;
+            --card-bg: #0f0f15;
+            --text-primary: #ffffff;
+            --text-secondary: #a0a0b0;
+            --accent-cyan: #00f2ea;
+            --accent-purple: #7000ff;
+            --accent-pink: #ff0055;
+            --border-color: #1f1f35;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-primary);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* AI Automation Background Grid */
+        .bg-grid {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(rgba(111, 0, 255, 0.05) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 242, 234, 0.05) 1px, transparent 1px);
+            background-size: 40px 40px;
+            z-index: -2;
+        }
+
+        .bg-glow {
+            position: fixed;
+            width: 600px;
+            height: 600px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(0, 242, 234, 0.15) 0%, rgba(0, 0, 0, 0) 70%);
+            top: -200px;
+            left: -200px;
+            z-index: -1;
+            animation: float 10s ease-in-out infinite;
+        }
+
+        .bg-glow-2 {
+            position: fixed;
+            width: 500px;
+            height: 500px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(112, 0, 255, 0.15) 0%, rgba(0, 0, 0, 0) 70%);
+            bottom: -200px;
+            right: -200px;
+            z-index: -1;
+            animation: float 12s ease-in-out infinite reverse;
+        }
+
+        @keyframes float {
+            0% { transform: translate(0, 0); }
+            50% { transform: translate(50px, 50px); }
+            100% { transform: translate(0, 0); }
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 1.5rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(5, 5, 8, 0.8);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border-color);
+            z-index: 100;
+        }
+
+        .logo {
+            font-family: 'Space Mono', monospace;
+            font-weight: 700;
+            font-size: 1.2rem;
+            color: var(--accent-cyan);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-weight: 400;
+            transition: color 0.3s;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-cyan);
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 0 5%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .hero-tag {
+            font-family: 'Space Mono', monospace;
+            color: var(--accent-cyan);
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .hero-tag::before {
+            content: '';
+            width: 30px;
+            height: 1px;
+            background: var(--accent-cyan);
+        }
+
+        h1 {
+            font-size: 4.5rem;
+            font-weight: 900;
+            line-height: 1.1;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #ffffff 0%, #a0a0b0 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            color: transparent;
+        }
+
+        .hero-role {
+            font-size: 1.5rem;
+            color: var(--accent-purple);
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-desc {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin-bottom: 2rem;
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .btn {
+            padding: 0.8rem 1.8rem;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s;
+            border: 1px solid transparent;
+        }
+
+        .btn-primary {
+            background: var(--accent-cyan);
+            color: #000;
+        }
+
+        .btn-primary:hover {
+            box-shadow: 0 0 20px rgba(0, 242, 234, 0.5);
+            transform: translateY(-2px);
+        }
+
+        .btn-outline {
+            border-color: var(--text-secondary);
+            color: var(--text-primary);
+        }
+
+        .btn-outline:hover {
+            border-color: var(--accent-cyan);
+            color: var(--accent-cyan);
+        }
+
+        /* Sections */
+        section {
+            padding: 6rem 5%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 3rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .section-title span {
+            color: var(--accent-cyan);
+            font-family: 'Space Mono', monospace;
+            font-size: 1rem;
+        }
+
+        /* About & Skills */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+        }
+
+        .about-text p {
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+        }
+
+        .skills-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+        }
+
+        .skill-tag {
+            padding: 0.5rem 1rem;
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            font-size: 0.85rem;
+            color: var(--text-primary);
+            transition: all 0.3s;
+        }
+
+        .skill-tag:hover {
+            border-color: var(--accent-purple);
+            color: var(--accent-cyan);
+            box-shadow: 0 0 10px rgba(112, 0, 255, 0.2);
+        }
+
+        /* Experience Timeline */
+        .timeline {
+            position: relative;
+            border-left: 1px solid var(--border-color);
+            padding-left: 2rem;
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 3rem;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -2.4rem;
+            top: 0.5rem;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: var(--bg-color);
+            border: 2px solid var(--accent-cyan);
+            box-shadow: 0 0 10px var(--accent-cyan);
+        }
+
+        .exp-header {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            margin-bottom: 0.5rem;
+        }
+
+        .exp-role {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+
+        .exp-company {
+            color: var(--accent-cyan);
+        }
+
+        .exp-date {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            background: var(--card-bg);
+            padding: 0.2rem 0.6rem;
+            border-radius: 4px;
+            border: 1px solid var(--border-color);
+        }
+
+        .exp-desc {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+        }
+
+        /* AI Workflow Section */
+        .workflow-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+            position: relative;
+        }
+
+        .workflow-step {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            padding: 2rem 1.5rem;
+            border-radius: 8px;
+            text-align: center;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .workflow-step:hover {
+            border-color: var(--accent-cyan);
+            transform: translateY(-5px);
+            box-shadow: 0 0 20px rgba(0, 242, 234, 0.1);
+        }
+
+        .workflow-icon {
+            width: 60px;
+            height: 60px;
+            background: rgba(0, 242, 234, 0.1);
+            border: 1px solid var(--accent-cyan);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            font-size: 1.5rem;
+            color: var(--accent-cyan);
+            box-shadow: 0 0 15px rgba(0, 242, 234, 0.2);
+        }
+
+        .workflow-step h3 {
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+            color: var(--text-primary);
+        }
+
+        .workflow-step p {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+        }
+
+        .workflow-number {
+            position: absolute;
+            top: 10px;
+            left: 15px;
+            font-family: 'Space Mono', monospace;
+            font-size: 0.8rem;
+            color: rgba(255, 255, 255, 0.2);
+            font-weight: 700;
+        }
+
+        /* Connectors for desktop */
+        .workflow-step:not(:last-child)::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            right: -1.2rem;
+            width: 1rem;
+            height: 1px;
+            background: var(--accent-purple);
+            z-index: 1;
+        }
+        .workflow-step:not(:last-child)::before {
+            content: '>';
+            position: absolute;
+            top: 50%;
+            right: -1.5rem;
+            transform: translateY(-50%);
+            color: var(--accent-purple);
+            font-family: 'Space Mono', monospace;
+            font-weight: bold;
+            font-size: 1rem;
+            z-index: 2;
+        }
+
+        /* Contact */
+        .contact-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .contact-card {
+            background: var(--card-bg);
+            padding: 1.5rem;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            transition: all 0.3s;
+        }
+
+        .contact-card:hover {
+            border-color: var(--accent-purple);
+            transform: translateY(-3px);
+        }
+
+        .contact-card i {
+            font-size: 1.5rem;
+            color: var(--accent-cyan);
+            margin-bottom: 1rem;
+        }
+
+        .contact-card h4 {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            color: var(--text-secondary);
+            margin-bottom: 0.3rem;
+        }
+
+        .contact-card p {
+            color: var(--text-primary);
+            font-size: 1rem;
+            word-break: break-word;
+        }
+
+        footer {
+            text-align: center;
+            padding: 2rem;
+            border-top: 1px solid var(--border-color);
+            margin-top: 4rem;
+        }
+
+        footer p {
+            color: var(--text-secondary);
+            font-size: 0.8rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            h1 { font-size: 2.8rem; }
+            .hero-role { font-size: 1.2rem; }
+            .about-grid { grid-template-columns: 1fr; }
+            .section-title { font-size: 1.5rem; }
+            .workflow-grid { grid-template-columns: 1fr; gap: 3rem; }
+            
+            /* Adjust connectors for mobile */
+            .workflow-step:not(:last-child)::after {
+                top: auto;
+                bottom: -1.8rem;
+                right: 50%;
+                width: 1px;
+                height: 1.5rem;
+                transform: translateX(50%);
+            }
+            .workflow-step:not(:last-child)::before {
+                top: auto;
+                bottom: -2.5rem;
+                right: 50%;
+                transform: translateX(50%);
+                content: 'v';
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- AI Background Elements -->
+    <div class="bg-grid"></div>
+    <div class="bg-glow"></div>
+    <div class="bg-glow-2"></div>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="logo">J_M_T.exe</div>
+        <ul class="nav-links">
+            <li><a href="#about">About</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#workflow">Workflow</a></li>
+            <li><a href="#experience">Experience</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="hero">
+        <div class="hero-tag">SYSTEM ONLINE // AVAILABLE FOR WORK</div>
+        <h1>JADE MARTIN<br>TUNONG</h1>
+        <div class="hero-role">Cybersecurity Engineer & Graphic Designer</div>
+        <p class="hero-desc">
+            Bridging the gap between technical security operations and creative design. 
+            Specialized in AI automation, system monitoring, and brand visual standards with 3+ years of multidisciplinary experience.
+        </p>
+        <div class="btn-group">
+            <a href="#contact" class="btn btn-primary">Initiate Contact</a>
+            <a href="#workflow" class="btn btn-outline">View AI Workflow</a>
+        </div>
+    </header>
+
+    <!-- About & Skills Section -->
+    <section id="about">
+        <div class="section-title"><span>01.</span> Core Competencies</div>
+        <div class="about-grid">
+            <div class="about-text">
+                <p>
+                    Hello! I'm Jade, a Computer Science graduate based in Mati City, Philippines. My professional journey is unique—I thrive at the intersection of logic and creativity.
+                </p>
+                <p>
+                    On the technical side, I specialize in Cybersecurity Operations, Incident Response, and AI Automation. I monitor systems, trace root causes, and ensure ISO 27001 compliance. 
+                </p>
+                <p>
+                    On the creative side, I bring 3 years of Graphic Design experience, focusing on layout, color harmony, and typography. I am adaptable, detail-oriented, and ready to integrate automated solutions into modern workflows.
+                </p>
+            </div>
+            <div id="skills">
+                <div class="skills-container">
+                    <span class="skill-tag">AI Automation</span>
+                    <span class="skill-tag">Machine Learning</span>
+                    <span class="skill-tag">Cybersecurity Operations</span>
+                    <span class="skill-tag">Incident Response</span>
+                    <span class="skill-tag">Security Monitoring</span>
+                    <span class="skill-tag">System Analysis</span>
+                    <span class="skill-tag">Graphic Design</span>
+                    <span class="skill-tag">Web Design Basics</span>
+                    <span class="skill-tag">Technical Documentation</span>
+                    <span class="skill-tag">Vulnerability Awareness</span>
+                    <span class="skill-tag">Process Compliance (ISO 27001)</span>
+                    <span class="skill-tag">Project Management</span>
+                    <span class="skill-tag">Teamwork</span>
+                    <span class="skill-tag">Time Management</span>
+                    <span class="skill-tag">Adaptability</span>
+                    <span class="skill-tag">Accuracy & Organization</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- AI Automation Workflow Section -->
+    <section id="workflow">
+        <div class="section-title"><span>02.</span> AI Automation Workflow</div>
+        <div class="workflow-grid">
+            
+            <div class="workflow-step">
+                <span class="workflow-number">01</span>
+                <div class="workflow-icon">
+                    <i class="fas fa-database"></i>
+                </div>
+                <h3>Data Ingestion</h3>
+                <p>Collecting and structuring raw data from security logs, system alerts, or design briefs for processing.</p>
+            </div>
+
+            <div class="workflow-step">
+                <span class="workflow-number">02</span>
+                <div class="workflow-icon">
+                    <i class="fas fa-brain"></i>
+                </div>
+                <h3>AI Processing</h3>
+                <p>Leveraging Machine Learning models to analyze patterns, detect anomalies, and validate brand standards.</p>
+            </div>
+
+            <div class="workflow-step">
+                <span class="workflow-number">03</span>
+                <div class="workflow-icon">
+                    <i class="fas fa-cogs"></i>
+                </div>
+                <h3>Automated Action</h3>
+                <p>Triggering automated incident responses, vulnerability patching, or executing repetitive design layouts.</p>
+            </div>
+
+            <div class="workflow-step">
+                <span class="workflow-number">04</span>
+                <div class="workflow-icon">
+                    <i class="fas fa-file-export"></i>
+                </div>
+                <h3>Output & Reports</h3>
+                <p>Generating accurate technical documentation, compliance records, and finalized professional assets.</p>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience">
+        <div class="section-title"><span>03.</span> Professional Experience</div>
+        <div class="timeline">
+            
+            <div class="timeline-item">
+                <div class="exp-header">
+                    <div>
+                        <div class="exp-role">Cyber Security Engineer</div>
+                        <div class="exp-company">BT Group (WFH)</div>
+                    </div>
+                    <div class="exp-date">2025 - 2026</div>
+                </div>
+                <p class="exp-desc">
+                    Gained solid experience in monitoring systems, identifying unusual activity, and following proper procedures to protect information. Investigated alerts thoroughly, traced root causes, and coordinated fixes. Maintained ISO 27001 standards and stayed updated on emerging threats.
+                </p>
+            </div>
+
+            <div class="timeline-item">
+                <div class="exp-header">
+                    <div>
+                        <div class="exp-role">Cold Caller</div>
+                        <div class="exp-company">Dynata Global (WFH)</div>
+                    </div>
+                    <div class="exp-date">2024 - 2025</div>
+                </div>
+                <p class="exp-desc">
+                    Communicated professionally with diverse individuals, delivering clear messages consistently. Handled concerns effectively, maintained accurate call records, and managed time efficiently to meet daily targets. Built high resilience and discipline.
+                </p>
+            </div>
+
+            <div class="timeline-item">
+                <div class="exp-header">
+                    <div>
+                        <div class="exp-role">Graphics Designer</div>
+                        <div class="exp-company">King Ben's (Local PH)</div>
+                    </div>
+                    <div class="exp-date">2017 - 2024</div>
+                </div>
+                <p class="exp-desc">
+                    Mastered proper layout, color harmony, typography, and consistent brand standards. Developed strong attention to detail, delivering quality, professional designs on schedule. Applied discipline and creativity to all visual projects.
+                </p>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <div class="section-title"><span>04.</span> Contact & Education</div>
+        
+        <div style="margin-bottom: 3rem; padding: 1.5rem; background: var(--card-bg); border-left: 3px solid var(--accent-purple); border-radius: 4px;">
+            <h4 style="color: var(--text-secondary); text-transform: uppercase; font-size: 0.8rem; margin-bottom: 0.5rem;">Education</h4>
+            <h3 style="color: var(--text-primary);">University of Immaculate Conception</h3>
+            <p style="color: var(--accent-cyan);">Bachelor's Degree in Computer Science</p>
+        </div>
+
+        <div class="contact-info">
+            <div class="contact-card">
+                <i class="fas fa-envelope"></i>
+                <h4>Email</h4>
+                <p>jademartunong12@gmail.com</p>
+            </div>
+            <div class="contact-card">
+                <i class="fas fa-phone"></i>
+                <h4>Phone</h4>
+                <p>+63 975 988 0185</p>
+            </div>
+            <div class="contact-card">
+                <i class="fas fa-map-marker-alt"></i>
+                <h4>Location</h4>
+                <p>Mati City, Davao Oriental, Philippines</p>
+            </div>
+            <div class="contact-card">
+                <i class="fas fa-user-tie"></i>
+                <h4>Reference</h4>
+                <p>Soledad L. Ang (HR Manager)<br>+63 975 847 9281</p>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>© 2024 Jade Martin Tunong. Designed with AI Automation Themes.</p>
+    </footer>
+
+</body>
+</html>
